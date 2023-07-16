@@ -459,7 +459,8 @@ main{
         left:0;
         right:0;
         z-index:-1; /* needed to keep in the background */
-        background: url("../media-partial/AdobeStock_348865250 - 10percent.jpeg") center center;
+        /* background: url("../media-partial/AdobeStock_348865250 - 10percent.jpeg") center center; */
+        background: url("../media-partial/AdobeStock_348865250 - 10percent.jpeg");
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
