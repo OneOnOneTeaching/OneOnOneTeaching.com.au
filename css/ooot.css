@@ -446,7 +446,8 @@ main{
 @media screen and (orientation: portrait) {
     .home-page-background{
         /* background-image: url("../media-partial/AdobeStock_348865250 - 10percent.jpeg") center center no-repeat scroll; */
-        background-image: url("../media-partial/AdobeStock_348865250 - 10percent.jpeg");
+        /* background-image: url("../media-partial/AdobeStock_348865250 - 10percent.jpeg"); */
+        background-image: url("../media-partial/AdobeStock_131321079 - cropped.jpeg");
         /* background-repeat: no-repeat; */
         background-size:cover;
         background-attachment:fixed;
