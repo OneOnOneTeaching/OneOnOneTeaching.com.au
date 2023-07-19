@@ -163,248 +163,248 @@ function toggleCollapsables(buttonID){
 }
 // COLLAPSABLES end
 
-function currentYearSchedule(){
-    var v_date = new Date();
-    var v_year = v_date.getFullYear();
-    // v_year=2020
-    // if(v_clientOS=="Windows"){console.log(v_year);}
-    var v_yearStart = new Date(v_year*1,0,1); /* 1 Jan yyyy*/
-    var v_testDate = v_yearStart;
-    var v_trottersMeetDate = v_yearStart;
-    var v_trottersMeetDateString = new Date(v_yearStart).toLocaleDateString("en-AU");
-    var v_initialOffsetDays = 0;
-    var v_today = new Date();
-    var weekday = new Array(7);
-    weekday[0] = "Sun";
-    weekday[1] = "Mon";
-    weekday[2] = "Tue";
-    weekday[3] = "Wed";
-    weekday[4] = "Thu";
-    weekday[5] = "Fri";
-    weekday[6] = "Sat";
-    var v_day = weekday[v_today.getDay()];
-    var v_todayString = v_day + ', ' + v_today.toLocaleDateString("en-AU") ;
-    var v_startDate = new Date();
-    var v_endDate = new Date();
-    var v_endDateLastWeek = v_startDate;
-    // if(v_clientOS=="Windows"){console.log('v_today:- ',v_today,'\n\nv_todayString:- ',v_todayString,'\n\nv_startDate:- ',v_startDate,'\n\nv_endDate:- ',v_endDate);}
-    // if(v_clientOS=="Windows"){console.log('v_today',v_today,'\nv_startDate',v_startDate,'\nv_endDate',v_endDate);}
-//  find first Saturday
-    for (i=0;i<27;i++){
-        v_testDate = new Date(v_year*1,0,i+1) /* i starts at 0 */ 
-        // if(v_clientOS=="Windows"){console.log('v_testDate:- ',v_testDate);}
-        if (v_testDate.getDay()+1==7){ /* = 0 Sunday */
-            v_trottersMeetDate = new Date(v_testDate);
-            break;
-        }
-    }
-    var v_html = ``;
-    // v_html += `<h1>Current training schedule</h1>`;
-    v_html += `<h2>Prep for the City-2-Surf</h2>`;
-    v_html += `<table>`;
-        v_html += `<tr>`;
-            v_html += `<th class="table-simple">Start date</th>`;
-            v_html += `<th class="table-simple">End date</th>`;
-            v_html += `<th  class="table-simple">Course</th>`;
-            v_html += `<th  class="table-simple">Repetitions</th>`;
-            v_html += `<th  class="table-simple">Where are we now?</th>`;
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 2 January	6 February	8.6km	6 times
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate()));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                // if(v_clientOS=="Windows"){console.log('v_trottersMeetDate.getDate()+(7*(6-1)) :- ',v_trottersMeetDate.getDate()+(7*(6-1)-v_initialOffsetDays*0));}
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(6-1)-v_initialOffsetDays*0)));
-                v_endDate = new Date(v_trottersMeetDate);
-                // if(v_clientOS=="Windows"){console.log('v_trottersMeetDate:- ',v_trottersMeetDate);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-                // if(v_clientOS=="Windows"){console.log('v_trottersMeetDateString:- ',v_trottersMeetDateString);}
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">8.6km</td>`;
-            v_html += `<td class="table-simple">6</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 13 February	20 March	10.2km	6 times
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(6-1))));
-                v_endDate = new Date(v_trottersMeetDate);
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">10.2km</td>`;
-            v_html += `<td class="table-simple">6</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 27 March	1 May	12.0km	6 times
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(6-1))));
-                v_endDate = new Date(v_trottersMeetDate);
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">12.0km</td>`;
-            v_html += `<td class="table-simple">6</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 8 May	19 June	14.0km	7 times
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(7-1))));
-                v_endDate = new Date(v_trottersMeetDate);
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">14.0km</td>`;
-            v_html += `<td class="table-simple">7</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 26 June	31 July	15.1km	6 OR 7 times
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(7-1))));
-                v_endDate = new Date(v_trottersMeetDate);
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">15.1km</td>`;
-            v_html += `<td class="table-simple">7</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 6 August	OR 13 August Mass start, pre- C2S	6.5km	1 time
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate()));
-                v_endDate = new Date(v_trottersMeetDate);
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">6.5km</td>`;
-            v_html += `<td class="table-simple">1</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 7 August	OR 14 August City to Surf (C2S)	14.0km	
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 1));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate()));
-                v_endDate = new Date(v_trottersMeetDate);
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">14.0km</td>`;
-            v_html += `<td class="table-simple">City-2-Surf</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 14 August	28 August	12.0km	3 times
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 6));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(3-1))));
-                v_endDate = new Date(v_trottersMeetDate);
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">12.0km</td>`;
-            v_html += `<td class="table-simple">3</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 4 September	18 September	10.2km	3 times
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(3-1))));
-                v_endDate = new Date(v_trottersMeetDate);
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">10.2km</td>`;
-            v_html += `<td class="table-simple">3</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 25 September	9 October	8.6km	3 times
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(3-1))));
-                v_endDate = new Date(v_trottersMeetDate);
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">8.6km</td>`;
-            v_html += `<td class="table-simple">3</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-        v_html += `<tr>`;
-            // 16 October	25 December	6.5km	11 times
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
-                v_startDate = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_trottersMeetDate);
-                v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
-                // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-                v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(11-1))));
-                v_endDate = new Date(v_trottersMeetDate);
-                v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
-            v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
-            v_html += `<td class="table-simple">6.5km</td>`;
-            v_html += `<td class="table-simple">11</td>`;
-            if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
-        v_html += `</tr>`;
-    v_html += `</table>`;
+// function currentYearSchedule(){
+//     var v_date = new Date();
+//     var v_year = v_date.getFullYear();
+//     // v_year=2020
+//     // if(v_clientOS=="Windows"){console.log(v_year);}
+//     var v_yearStart = new Date(v_year*1,0,1); /* 1 Jan yyyy*/
+//     var v_testDate = v_yearStart;
+//     var v_trottersMeetDate = v_yearStart;
+//     var v_trottersMeetDateString = new Date(v_yearStart).toLocaleDateString("en-AU");
+//     var v_initialOffsetDays = 0;
+//     var v_today = new Date();
+//     var weekday = new Array(7);
+//     weekday[0] = "Sun";
+//     weekday[1] = "Mon";
+//     weekday[2] = "Tue";
+//     weekday[3] = "Wed";
+//     weekday[4] = "Thu";
+//     weekday[5] = "Fri";
+//     weekday[6] = "Sat";
+//     var v_day = weekday[v_today.getDay()];
+//     var v_todayString = v_day + ', ' + v_today.toLocaleDateString("en-AU") ;
+//     var v_startDate = new Date();
+//     var v_endDate = new Date();
+//     var v_endDateLastWeek = v_startDate;
+//     // if(v_clientOS=="Windows"){console.log('v_today:- ',v_today,'\n\nv_todayString:- ',v_todayString,'\n\nv_startDate:- ',v_startDate,'\n\nv_endDate:- ',v_endDate);}
+//     // if(v_clientOS=="Windows"){console.log('v_today',v_today,'\nv_startDate',v_startDate,'\nv_endDate',v_endDate);}
+// //  find first Saturday
+//     for (i=0;i<27;i++){
+//         v_testDate = new Date(v_year*1,0,i+1) /* i starts at 0 */ 
+//         // if(v_clientOS=="Windows"){console.log('v_testDate:- ',v_testDate);}
+//         if (v_testDate.getDay()+1==7){ /* = 0 Sunday */
+//             v_trottersMeetDate = new Date(v_testDate);
+//             break;
+//         }
+//     }
+//     var v_html = ``;
+//     // v_html += `<h1>Current training schedule</h1>`;
+//     v_html += `<h2>Prep for the City-2-Surf</h2>`;
+//     v_html += `<table>`;
+//         v_html += `<tr>`;
+//             v_html += `<th class="table-simple">Start date</th>`;
+//             v_html += `<th class="table-simple">End date</th>`;
+//             v_html += `<th  class="table-simple">Course</th>`;
+//             v_html += `<th  class="table-simple">Repetitions</th>`;
+//             v_html += `<th  class="table-simple">Where are we now?</th>`;
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 2 January	6 February	8.6km	6 times
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate()));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 // if(v_clientOS=="Windows"){console.log('v_trottersMeetDate.getDate()+(7*(6-1)) :- ',v_trottersMeetDate.getDate()+(7*(6-1)-v_initialOffsetDays*0));}
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(6-1)-v_initialOffsetDays*0)));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 // if(v_clientOS=="Windows"){console.log('v_trottersMeetDate:- ',v_trottersMeetDate);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//                 // if(v_clientOS=="Windows"){console.log('v_trottersMeetDateString:- ',v_trottersMeetDateString);}
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">8.6km</td>`;
+//             v_html += `<td class="table-simple">6</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 13 February	20 March	10.2km	6 times
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(6-1))));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">10.2km</td>`;
+//             v_html += `<td class="table-simple">6</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 27 March	1 May	12.0km	6 times
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(6-1))));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">12.0km</td>`;
+//             v_html += `<td class="table-simple">6</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 8 May	19 June	14.0km	7 times
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(7-1))));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">14.0km</td>`;
+//             v_html += `<td class="table-simple">7</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 26 June	31 July	15.1km	6 OR 7 times
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(7-1))));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">15.1km</td>`;
+//             v_html += `<td class="table-simple">7</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 6 August	OR 13 August Mass start, pre- C2S	6.5km	1 time
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate()));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">6.5km</td>`;
+//             v_html += `<td class="table-simple">1</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 7 August	OR 14 August City to Surf (C2S)	14.0km	
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 1));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate()));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">14.0km</td>`;
+//             v_html += `<td class="table-simple">City-2-Surf</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 14 August	28 August	12.0km	3 times
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 6));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(3-1))));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">12.0km</td>`;
+//             v_html += `<td class="table-simple">3</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 4 September	18 September	10.2km	3 times
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(3-1))));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">10.2km</td>`;
+//             v_html += `<td class="table-simple">3</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 25 September	9 October	8.6km	3 times
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(3-1))));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">8.6km</td>`;
+//             v_html += `<td class="table-simple">3</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//         v_html += `<tr>`;
+//             // 16 October	25 December	6.5km	11 times
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + 7));
+//                 v_startDate = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_trottersMeetDate);
+//                 v_endDateLastWeek = new Date(v_endDateLastWeek.setDate(v_endDateLastWeek.getDate()-7));
+//                 // if(v_clientOS=="Windows"){console.log('v_startDate:- ',v_startDate,'v_endDateLastWeek:- ',v_endDateLastWeek);}
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//                 v_trottersMeetDate = new Date(v_trottersMeetDate.setDate(v_trottersMeetDate.getDate() + (7*(11-1))));
+//                 v_endDate = new Date(v_trottersMeetDate);
+//                 v_trottersMeetDateString = new Date(v_trottersMeetDate).toLocaleDateString("en-AU");
+//             v_html += `<td class="table-simple">${v_trottersMeetDateString}</td>`;
+//             v_html += `<td class="table-simple">6.5km</td>`;
+//             v_html += `<td class="table-simple">11</td>`;
+//             if (v_endDateLastWeek < v_today && v_endDate >= v_today){v_html += `<td class="table-simple">${v_todayString}</td>`;}else{v_html += `<td class="table-simple"></td>`;}
+//         v_html += `</tr>`;
+//     v_html += `</table>`;
 
-    document.getElementById('currentYearSchedule').innerHTML = v_html;
+//     document.getElementById('currentYearSchedule').innerHTML = v_html;
 
-}
-currentYearSchedule();
+// }
+// currentYearSchedule();
 
 function timeToFutureDateTime(){
     const   v_second = 1000,
