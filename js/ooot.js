@@ -434,7 +434,7 @@ function timeToFutureDateTime(){
                 // console.log(futureDateTime.toDateString());
                 futureDateTimeString = new Date(futureDateTime);
                 // console.log(futureDateTimeString);
-                document.getElementById("c2sDate").innerText = futureDateTimeString; 
+// XXXX                document.getElementById("c2sDate").innerText = futureDateTimeString; 
             }else{
                 // console.log(futureDateTime.toDateString().slice(0,3));
             }
@@ -453,10 +453,10 @@ function timeToFutureDateTime(){
     // console.log(futureDateTime);
     var dateNow = new Date().getTime();
     var difference = futureDateTime - dateNow;
-    document.getElementById("f_days").innerText = Math.floor(difference / v_day);
-    document.getElementById("f_hours").innerText = Math.floor((difference % v_day) / v_hour);
-    document.getElementById("f_minutes").innerText = Math.floor((difference % v_hour) / v_minute);
-    document.getElementById("f_seconds").innerText = Math.floor((difference % v_minute) / v_second);
+// XXXX    document.getElementById("f_days").innerText = Math.floor(difference / v_day);
+// XXXX    document.getElementById("f_hours").innerText = Math.floor((difference % v_day) / v_hour);
+// XXXX    document.getElementById("f_minutes").innerText = Math.floor((difference % v_hour) / v_minute);
+// XXXX    document.getElementById("f_seconds").innerText = Math.floor((difference % v_minute) / v_second);
     // document.getElementById("f_futureDateTimeString").innerText = v_futureDateTimeString;
 }
 timeToFutureDateTime();
