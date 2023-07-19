@@ -433,26 +433,23 @@ main{
 .home-page-background{
     background-image: url("../media-partial/AdobeStock_604195089 - 10percent.jpeg");
     background-repeat: no-repeat;
-    /* background-position: top; */
-    /* background-size:contain; */
     background-size:cover;
     background-attachment: fixed;
+    /* background-position: top; */
     /* height:100vw; */
     /* width:100vw; */
-    min-height:100vh;
+    /* min-height:100vh; */
     /* min-width:100vw; */
     /* margin:auto; */
 }
 @media screen and (orientation: portrait) {
     .home-page-background{
-        /* background-image: url("../media-partial/AdobeStock_348865250 - 10percent.jpeg") center center no-repeat scroll; */
-        /* background-image: url("../media-partial/AdobeStock_348865250 - 10percent.jpeg"); */
         background-image: url("../media-partial/AdobeStock_131321079 - cropped.jpeg");
-        /* background-repeat: no-repeat; */
+        background-repeat: no-repeat;
         background-size:cover;
         background-attachment:fixed;
-        background-position: top;
-        min-height:100vh;
+        /* background-position: top; */
+        /* min-height:100vh; */
     }
     /* body:after{
         content:"";
